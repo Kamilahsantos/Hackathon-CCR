@@ -2,7 +2,6 @@ package com.ccr.hackathon.backend.model;
 
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
