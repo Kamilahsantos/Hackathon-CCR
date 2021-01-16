@@ -1,10 +1,10 @@
 package com.ccr.hackathon.backend.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+
+import javax.persistence.*;
 
 @Entity
-@Table(name = "techcontent")
+@Table(name = "tech_content")
 public class TechContent {
 
 
@@ -13,7 +13,8 @@ public class TechContent {
     private String description;
     private String url;
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     public Long getId() {
         return id;
     }
@@ -21,6 +22,7 @@ public class TechContent {
     public void setId(Long id) {
         this.id = id;
     }
+
 
     public String getTitle() {
         return title;
