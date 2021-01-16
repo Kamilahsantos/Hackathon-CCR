@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/content")
 @RestController
 public class TechContentController {
 
@@ -29,7 +29,7 @@ public class TechContentController {
             @ApiResponse(code = 500, message = "An internal error occurred, it was not possible to complete your request")
     }
     )
-    @PostMapping("/techcontent")
+    @PostMapping("/tech")
     public TechContent createTechContent(@Valid @RequestBody TechContent techContent) {
         return techContentRepository.save(techContent);
     }
@@ -41,7 +41,7 @@ public class TechContentController {
             @ApiResponse(code = 500, message = "An internal error occurred , it was not possible to complete your request")
     }
     )
-    @GetMapping("/techcontent")
+    @GetMapping("/tech")
     public List<TechContent> getAllTechContents() {
         return techContentRepository.findAll();
     }
@@ -53,7 +53,7 @@ public class TechContentController {
             @ApiResponse(code = 500, message = "An internal error occurred , it was not possible to complete your request")
     }
     )
-    @GetMapping("techcontent/{id}")
+    @GetMapping("tech/{id}")
     public ResponseEntity<TechContent> getTechContentById(@PathVariable(value = "id") Long contentId)
             throws ResourceNotFoundException {
         TechContent techContent = techContentRepository.findById(contentId)
@@ -68,7 +68,7 @@ public class TechContentController {
             @ApiResponse(code = 500, message = "An internal error occurred w it was not possible to complete your request")
     }
     )
-    @PutMapping("/techcontent/{id}")
+    @PutMapping("/tech/{id}")
     public ResponseEntity<TechContent> updateTechContent(@PathVariable(value = "id") Long contentId,
                                                          @Valid @RequestBody TechContent contentDetails) throws ResourceNotFoundException {
         TechContent techContent = techContentRepository.findById(contentId)
@@ -93,7 +93,7 @@ public class TechContentController {
             @ApiResponse(code = 500, message = "An internal error occurred , it was not possible to complete your request")
     }
     )
-    @DeleteMapping("/techcontent/{id}")
+    @DeleteMapping("/tech/{id}")
     public Map<String, Boolean> deleteTechContent(@PathVariable(value = "id") Long contentId)
             throws ResourceNotFoundException {
         TechContent techContent = techContentRepository.findById(contentId)
