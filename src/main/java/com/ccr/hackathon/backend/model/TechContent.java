@@ -2,6 +2,8 @@ package com.ccr.hackathon.backend.model;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "tech_content")
@@ -23,7 +25,9 @@ public class TechContent {
         this.id = id;
     }
 
-
+    @Column(name = "title", length = 255, nullable = false)
+    @NotNull(message = "Please input a title")
+    @Size(max = 255)
     public String getTitle() {
         return title;
     }
@@ -32,6 +36,9 @@ public class TechContent {
         this.title = title;
     }
 
+    @Column(name = "description", length = 255, nullable = false)
+    @NotNull(message = "Please input a description")
+    @Size(max = 255)
     public String getDescription() {
         return description;
     }
@@ -40,6 +47,9 @@ public class TechContent {
         this.description = description;
     }
 
+    @Column(name = "url", length = 255, nullable = false)
+    @NotNull(message = "Please input a url")
+    @Size(max = 255)
     public String getUrl() {
         return url;
     }
@@ -61,7 +71,7 @@ public class TechContent {
 
     @Override
     public String toString() {
-        return "Activity [id=" + id + ", title=" + title + ", description=" + description + ", url=" + url + "]";
+        return "TechContent [id=" + id + ", title=" + title + ", description=" + description + ", url=" + url + "]";
     }
 
 
