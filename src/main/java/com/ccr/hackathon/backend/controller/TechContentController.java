@@ -21,9 +21,9 @@ public class TechContentController {
     private TechContentRepository techContentRepository;
 
 
-    @ApiOperation(value = "Create a new activity")
+    @ApiOperation(value = "Create a new tech content")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "activity successfully created"),
+            @ApiResponse(code = 201, message = "tech content successfully created"),
             @ApiResponse(code = 500, message = "An internal error occurred while creating the claim, it was not possible to complete your request")
     }
     )
