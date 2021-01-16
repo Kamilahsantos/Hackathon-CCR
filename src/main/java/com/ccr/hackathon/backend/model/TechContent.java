@@ -25,8 +25,7 @@ public class TechContent {
         this.id = id;
     }
 
-    @Column(name = "title", length = 255, nullable = false)
-    @NotNull(message = "Please input a title")
+    @Column(name = "title", length = 255, nullable = true)
     @Size(max = 255)
     public String getTitle() {
         return title;
@@ -36,8 +35,7 @@ public class TechContent {
         this.title = title;
     }
 
-    @Column(name = "description", length = 255, nullable = false)
-    @NotNull(message = "Please input a description")
+    @Column(name = "description", length = 255, nullable = true)
     @Size(max = 255)
     public String getDescription() {
         return description;
@@ -47,8 +45,7 @@ public class TechContent {
         this.description = description;
     }
 
-    @Column(name = "url", length = 255, nullable = false)
-    @NotNull(message = "Please input a url")
+    @Column(name = "url", length = 255, nullable = true)
     @Size(max = 255)
     public String getUrl() {
         return url;
