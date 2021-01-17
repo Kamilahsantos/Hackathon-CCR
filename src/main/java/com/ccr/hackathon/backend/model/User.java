@@ -172,7 +172,7 @@ public class User {
     }
 
 
-    @Column(name = "birthDate", length = 255, nullable = true)
+    @Column(name = "projects", length = 255, nullable = true)
     @Size(max = 255)
     public String getProjects() {
         return projects;
