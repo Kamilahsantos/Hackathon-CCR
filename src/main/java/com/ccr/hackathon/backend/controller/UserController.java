@@ -6,6 +6,7 @@ import com.ccr.hackathon.backend.repository.UserRepository;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @RequestMapping("/api/v1")
 @RestController
 public class UserController {
@@ -32,6 +34,7 @@ public class UserController {
     )
     @PostMapping("/user")
     public User createUser(@Valid @RequestBody User user) {
+        log.info("Creating a new user with name {} ", user.getName());
         return userRepository.save(user);
     }
 
@@ -44,6 +47,7 @@ public class UserController {
     )
     @GetMapping("/user")
     public List<User> getAllTechUsers() {
+        log.info("Listing all Tech content");
         return userRepository.findAll();
     }
 
@@ -59,6 +63,8 @@ public class UserController {
             throws ResourceNotFoundException {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found :: " + userId));
+        log.info("Find a Tech content with id {} ", userId);
+
         return ResponseEntity.ok().body(user);
     }
 
@@ -82,11 +88,17 @@ public class UserController {
         user.setName(userDetails.getName());
         user.setScholarity(userDetails.getScholarity());
         user.setTrack(userDetails.getTrack());
+        user.setAddress(userDetails.getAddress());
+        user.setBirthDate(userDetails.getBirthDate());
+        user.setExperience(userDetails.getExperience());
+        user.setProjects(userDetails.getProjects());
+        user.setPhoneNumber(userDetails.getPhoneNumber());
 
 
         final User updateUser = userRepository.save(
                 user
         );
+        log.info("Soft skills  content with id  {} was successfully updated", userId);
         return ResponseEntity.ok(updateUser);
     }
 
@@ -106,6 +118,7 @@ public class UserController {
         userRepository.delete(user);
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
+        log.info("Tech Content with id {}  deleted with success ", userId);
         return response;
     }
 }

@@ -3,9 +3,14 @@ package com.ccr.hackathon.backend.model;
 import com.ccr.hackathon.backend.enums.GENDER;
 import com.ccr.hackathon.backend.enums.SCHOLARITY;
 import com.ccr.hackathon.backend.enums.TRACK;
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "user_info")
@@ -23,11 +28,21 @@ public class User {
 
     private Long familyIncome;
 
-
     private TRACK track;
 
-
     private Long score;
+
+    private String experience;
+
+    private String address;
+
+    private String phoneNumber;
+
+    private Date birthDate;
+
+    private LocalDateTime createdAt;
+
+    private List projects;
 
 
     @Id
@@ -106,12 +121,73 @@ public class User {
         return score;
     }
 
+    @Column(name = "experience", length = 255, nullable = true)
+    @Size(max = 255)
+    public String getExperience() {
+        return experience;
+    }
+
+    public void setExperience(String experience) {
+        this.experience = experience;
+    }
+    @Column(name = "address", length = 255, nullable = true)
+    @Size(max = 255)
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    @Column(name = "phoneNumber", length = 255, nullable = true)
+    @Size(max = 255)
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    @Column(name = "birthDate", length = 255, nullable = true)
+    @Size(max = 255)
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    @Column(name = "birthDate", length = 255, nullable = true)
+    @CreatedDate
+    @CreationTimestamp
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+
+    @Column(name = "birthDate", length = 255, nullable = true)
+    @Size(max = 255)
+    public List getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List projects) {
+        this.projects = projects;
+    }
+
+
     public void setScore(Long score) {
         this.score = score;
     }
 
-    public User(Long id, String name, String documentNumber, GENDER gender, SCHOLARITY scholarity, Long familyIncome, TRACK track) {
-
+    public User(Long id, String name, String documentNumber, GENDER gender, SCHOLARITY scholarity, Long familyIncome, TRACK track, Long score, String experience, String address, String phoneNumber, Date birthDate, LocalDateTime createdAt, List projects) {
         this.id = id;
         this.name = name;
         this.documentNumber = documentNumber;
@@ -119,13 +195,36 @@ public class User {
         this.scholarity = scholarity;
         this.familyIncome = familyIncome;
         this.track = track;
+        this.score = score;
+        this.experience = experience;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.birthDate = birthDate;
+        this.createdAt = createdAt;
+        this.projects = projects;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", documentNumber='" + documentNumber + '\'' +
+                ", gender=" + gender +
+                ", scholarity=" + scholarity +
+                ", familyIncome=" + familyIncome +
+                ", track=" + track +
+                ", score=" + score +
+                ", experience='" + experience + '\'' +
+                ", address='" + address + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", birthDate=" + birthDate +
+                ", createdAt=" + createdAt +
+                ", projects=" + projects +
+                '}';
     }
 
     public User() {
     }
 
-    @Override
-    public String toString() {
-        return "User [id=" + id + ", name=" + name + ", documentNumber=" + documentNumber + ", gender=" + gender + ", scholarity =" + scholarity + ", familyIncome=" + familyIncome + ", track=" + track + "]";
-    }
 }
