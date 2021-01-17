@@ -42,7 +42,7 @@ public class User {
 
     private LocalDateTime createdAt;
 
-    private List projects;
+    private String projects;
 
 
     @Id
@@ -174,11 +174,11 @@ public class User {
 
     @Column(name = "birthDate", length = 255, nullable = true)
     @Size(max = 255)
-    public List getProjects() {
+    public String getProjects() {
         return projects;
     }
 
-    public void setProjects(List projects) {
+    public void setProjects(String projects) {
         this.projects = projects;
     }
 
@@ -187,7 +187,7 @@ public class User {
         this.score = score;
     }
 
-    public User(Long id, String name, String documentNumber, GENDER gender, SCHOLARITY scholarity, Long familyIncome, TRACK track, Long score, String experience, String address, String phoneNumber, Date birthDate, LocalDateTime createdAt, List projects) {
+    public User(Long id, String name, String documentNumber, GENDER gender, SCHOLARITY scholarity, Long familyIncome, TRACK track, Long score, String experience, String address, String phoneNumber, Date birthDate, LocalDateTime createdAt, String projects) {
         this.id = id;
         this.name = name;
         this.documentNumber = documentNumber;
