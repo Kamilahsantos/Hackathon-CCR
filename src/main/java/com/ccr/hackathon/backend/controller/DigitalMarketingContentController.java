@@ -41,7 +41,7 @@ public class DigitalMarketingContentController {
             @ApiResponse(code = 500, message = "An internal error occurred , it was not possible to complete your request")
     }
     )
-    @GetMapping("/digitalmarketing")
+    @GetMapping("/digital_marketing")
     public List<DigitalMarketingContent> getAllDigitalMarketingContent() {
         return digitalMarketingContentRepository.findAll();
     }
@@ -53,7 +53,7 @@ public class DigitalMarketingContentController {
             @ApiResponse(code = 500, message = "An internal error occurred , it was not possible to complete your request")
     }
     )
-    @GetMapping("digitalmarketing/{id}")
+    @GetMapping("digital_marketing/{id}")
     public ResponseEntity<DigitalMarketingContent> getDigitalMarketingContentById(@PathVariable(value = "id") Long digitalmarketingId)
             throws ResourceNotFoundException {
         DigitalMarketingContent digitalMarketingContent = digitalMarketingContentRepository.findById(digitalmarketingId)
@@ -68,7 +68,7 @@ public class DigitalMarketingContentController {
             @ApiResponse(code = 500, message = "An internal error occurred w it was not possible to complete your request")
     }
     )
-    @PatchMapping("/digitalmarketing/{id}")
+    @PatchMapping("/digital_marketing/{id}")
     public ResponseEntity<DigitalMarketingContent> updateDigitalMarketing(@PathVariable(value = "id") Long digitalMarketingContentId,
                                                                           @Valid @RequestBody DigitalMarketingContent digitalMarketingContentDetails) throws ResourceNotFoundException {
         DigitalMarketingContent digitalMarketingContent = digitalMarketingContentRepository.findById(digitalMarketingContentId)
@@ -93,7 +93,7 @@ public class DigitalMarketingContentController {
             @ApiResponse(code = 500, message = "An internal error occurred , it was not possible to complete your request")
     }
     )
-    @DeleteMapping("/digitalmarketing/{id}")
+    @DeleteMapping("/digital_marketing/{id}")
     public Map<String, Boolean> deleteDigitalMarketingContent(@PathVariable(value = "id") Long digitalMarketingContentId)
             throws ResourceNotFoundException {
         DigitalMarketingContent digitalMarketingContent = digitalMarketingContentRepository.findById(digitalMarketingContentId)
