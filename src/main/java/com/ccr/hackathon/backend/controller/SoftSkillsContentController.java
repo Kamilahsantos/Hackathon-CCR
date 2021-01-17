@@ -1,13 +1,12 @@
 package com.ccr.hackathon.backend.controller;
 
 import com.ccr.hackathon.backend.exception.ResourceNotFoundException;
-import com.ccr.hackathon.backend.model.ManagementContent;
 import com.ccr.hackathon.backend.model.SoftSkillsContent;
-import com.ccr.hackathon.backend.model.TechContent;
 import com.ccr.hackathon.backend.repository.SoftSkillsContentRepository;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @RequestMapping("/api/v1/content")
 @RestController
 public class SoftSkillsContentController {
@@ -34,6 +34,7 @@ public class SoftSkillsContentController {
     )
     @PostMapping("/soft_skills")
     public SoftSkillsContent createSoftSkillsContent(@Valid @RequestBody SoftSkillsContent softSkillsContent) {
+        log.info(" Soft Skills  content  {} , {} , {}  and  {}  was successfully  created", softSkillsContent.getTitle(), softSkillsContent.getDescription(), softSkillsContent.getUrl(), softSkillsContent.getLevel());
         return softSkillsContentRepository.save(softSkillsContent);
     }
 
@@ -46,6 +47,7 @@ public class SoftSkillsContentController {
     )
     @GetMapping("/soft_skills")
     public List<SoftSkillsContent> getAllSoftSkillsContent() {
+        log.info("Listing all Soft skills content");
         return softSkillsContentRepository.findAll();
     }
 
@@ -61,9 +63,10 @@ public class SoftSkillsContentController {
             throws ResourceNotFoundException {
         SoftSkillsContent softSkillsContent = softSkillsContentRepository.findById(softSkillsContentId)
                 .orElseThrow(() -> new ResourceNotFoundException("Soft Skills Content not found :: " + softSkillsContentId));
+        log.info("Soft skills content with  id  {}  was find with success", softSkillsContentId);
+
         return ResponseEntity.ok().body(softSkillsContent);
     }
-
 
 
     @PatchMapping("/soft_skills/{id}")
@@ -79,10 +82,10 @@ public class SoftSkillsContentController {
         softSkillsContent.setLevel(contentDetails.getLevel());
 
 
-
         final SoftSkillsContent updateSoftSkillsContent = softSkillsContentRepository.save(
                 softSkillsContent
         );
+        log.info("Soft skills  content with id  {} was successfully updated", softSkillsContentId);
         return ResponseEntity.ok(updateSoftSkillsContent);
     }
 
@@ -101,6 +104,7 @@ public class SoftSkillsContentController {
         softSkillsContentRepository.delete(softSkillsContent);
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
+        log.info("Soft skills Content with id {}  deleted with success ", softSkillsContentId);
         return response;
     }
 }

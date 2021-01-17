@@ -27,6 +27,9 @@ public class User {
     private TRACK track;
 
 
+    private Long score;
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     public Long getId() {
@@ -95,6 +98,16 @@ public class User {
 
     public void setTrack(TRACK track) {
         this.track = track;
+    }
+
+    @Column(name = "score", length = 255, nullable = true)
+    @Size(max = 255)
+    public Long getScore() {
+        return score;
+    }
+
+    public void setScore(Long score) {
+        this.score = score;
     }
 
     public User(Long id, String name, String documentNumber, GENDER gender, SCHOLARITY scholarity, Long familyIncome, TRACK track) {

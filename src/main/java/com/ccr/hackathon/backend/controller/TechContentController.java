@@ -6,6 +6,7 @@ import com.ccr.hackathon.backend.repository.TechContentRepository;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @RequestMapping("/api/v1/content")
 @RestController
 public class TechContentController {
@@ -31,6 +33,7 @@ public class TechContentController {
     )
     @PostMapping("/tech")
     public TechContent createTechContent(@Valid @RequestBody TechContent techContent) {
+        log.info("Creating a new Tech content {}, {} , {}  e {}  ", techContent.getTitle(), techContent.getDescription(), techContent.getUrl(), techContent.getLevel());
         return techContentRepository.save(techContent);
     }
 
@@ -43,6 +46,8 @@ public class TechContentController {
     )
     @GetMapping("/tech")
     public List<TechContent> getAllTechContents() {
+        log.info("Listing all Tech Content ");
+
         return techContentRepository.findAll();
     }
 
@@ -58,6 +63,7 @@ public class TechContentController {
             throws ResourceNotFoundException {
         TechContent techContent = techContentRepository.findById(contentId)
                 .orElseThrow(() -> new ResourceNotFoundException("Content not found :: " + contentId));
+        log.info("Find a Tech content with id {} ", contentId);
         return ResponseEntity.ok().body(techContent);
     }
 
@@ -81,10 +87,10 @@ public class TechContentController {
         techContent.setLevel(contentDetails.getLevel());
 
 
-
         final TechContent updateTechContent = techContentRepository.save(
                 techContent
         );
+        log.info("Tech content with id  {} updated with success ", contentId);
         return ResponseEntity.ok(updateTechContent);
     }
 
@@ -104,6 +110,7 @@ public class TechContentController {
         techContentRepository.delete(techContent);
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
+        log.info("Tech Content with id {}  deleted with success ", contentId);
         return response;
     }
 }
