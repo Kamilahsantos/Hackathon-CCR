@@ -160,7 +160,7 @@ public class User {
         this.birthDate = birthDate;
     }
 
-    @Column(name = "birthDate", length = 255, nullable = true)
+    @Column(name = "createdAt", length = 255, nullable = true)
     @CreatedDate
     @CreationTimestamp
     public LocalDateTime getCreatedAt() {
