@@ -1,6 +1,8 @@
 package com.ccr.hackathon.backend.model;
 
 
+import com.ccr.hackathon.backend.enums.LEVEL;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
@@ -13,6 +15,8 @@ public class TechContent {
     private String title;
     private String description;
     private String url;
+    private LEVEL level;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -54,20 +58,32 @@ public class TechContent {
         this.url = url;
     }
 
+    @Column(name = "level", length = 255, nullable = true)
+    @Size(max = 255)
+    public LEVEL getLevel() {
+        return level;
+    }
+
+    public void setLevel(LEVEL level) {
+        this.level = level;
+    }
+
     public TechContent() {
     }
 
-    public TechContent(Long id, String title, String description, String url) {
+    public TechContent(Long id, String title, String description, String url, LEVEL level) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.url = url;
+        this.level = level;
+
     }
 
 
     @Override
     public String toString() {
-        return "TechContent [id=" + id + ", title=" + title + ", description=" + description + ", url=" + url + "]";
+        return "TechContent [id=" + id + ", title=" + title + ", description=" + description + ", url=" + url +", level="+ level +"]";
     }
 
 
