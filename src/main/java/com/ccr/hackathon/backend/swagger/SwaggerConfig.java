@@ -28,8 +28,10 @@ public class SwaggerConfig {
     private ApiInfo apiInfo(){
 
         return new ApiInfoBuilder()
-                .title("a definir")
-                .description("Nossa missão é transformar esse cenário dando à esses jovens a oportunidade de serem protagonistas da sua carreira profissional!")
+                .title("RecomeçaTech API ")
+                .description("Backend do projeto RecomeçaTech! Nossa missão é capacitar jovens egressos do\n" +
+                        "sistema penal e conectá-los com o mercado da tecnologia, seja por meio da\n" +
+                        "educação empreendedorismo, apoio social e mercado de trabalho.")
                 .version("1.0.0")
                 .license("Apache License Version 2.0")
                 .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0")
