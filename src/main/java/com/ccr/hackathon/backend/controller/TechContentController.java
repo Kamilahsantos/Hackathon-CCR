@@ -78,6 +78,8 @@ public class TechContentController {
         techContent.setTitle(contentDetails.getTitle());
         techContent.setDescription(contentDetails.getDescription());
         techContent.setUrl(contentDetails.getUrl());
+        techContent.setLevel(contentDetails.getLevel());
+
 
 
         final TechContent updateTechContent = techContentRepository.save(
