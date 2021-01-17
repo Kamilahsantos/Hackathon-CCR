@@ -29,11 +29,11 @@ public class SwaggerConfig {
 
         return new ApiInfoBuilder()
                 .title("a definir")
-                .description("Connecting cooperatives and associations of collectors of recyclable materials to condominiums aimed at making residents aware of environmental issues")
+                .description("Nossa missão é transformar esse cenário dando à esses jovens a oportunidade de serem protagonistas da sua carreira profissional!")
                 .version("1.0.0")
                 .license("Apache License Version 2.0")
                 .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0")
-                .contact(new Contact("Github", "https://github.com/Kamilahsantos/ReciclaUrbanBackend",null))
+                .contact(new Contact("Github", "https://github.com/Kamilahsantos/Hackathon-CCR",null))
                 .build();
 
     }
