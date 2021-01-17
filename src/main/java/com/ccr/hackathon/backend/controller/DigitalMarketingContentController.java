@@ -78,6 +78,8 @@ public class DigitalMarketingContentController {
         digitalMarketingContent.setDescription(digitalMarketingContentDetails.getDescription());
         digitalMarketingContent.setTitle(digitalMarketingContentDetails.getTitle());
         digitalMarketingContent.setUrl(digitalMarketingContentDetails.getUrl());
+        digitalMarketingContent.setLevel(digitalMarketingContentDetails.getLevel());
+
 
 
         final DigitalMarketingContent updateContent = digitalMarketingContentRepository.save(

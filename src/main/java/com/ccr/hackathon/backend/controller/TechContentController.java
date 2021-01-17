@@ -68,7 +68,7 @@ public class TechContentController {
             @ApiResponse(code = 500, message = "An internal error occurred w it was not possible to complete your request")
     }
     )
-    @PutMapping("/tech/{id}")
+    @PatchMapping("/tech/{id}")
     public ResponseEntity<TechContent> updateTechContent(@PathVariable(value = "id") Long contentId,
                                                          @Valid @RequestBody TechContent contentDetails) throws ResourceNotFoundException {
         TechContent techContent = techContentRepository.findById(contentId)

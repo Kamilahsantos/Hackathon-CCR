@@ -2,6 +2,7 @@ package com.ccr.hackathon.backend.controller;
 
 import com.ccr.hackathon.backend.exception.ResourceNotFoundException;
 import com.ccr.hackathon.backend.model.ManagementContent;
+import com.ccr.hackathon.backend.model.TechContent;
 import com.ccr.hackathon.backend.repository.ManagementContentRepository;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -59,6 +60,27 @@ public class ManagementContentController {
         ManagementContent managementContent = managementContentRepository.findById(managementContentId)
                 .orElseThrow(() -> new ResourceNotFoundException("Digital Marketing Content not found :: " + managementContentId));
         return ResponseEntity.ok().body(managementContent);
+    }
+
+
+    @PatchMapping("/management/{id}")
+    public ResponseEntity<ManagementContent> updateManagementContent(@PathVariable(value = "id") Long managementContentId,
+                                                         @Valid @RequestBody TechContent contentDetails) throws ResourceNotFoundException {
+        ManagementContent managementContent = managementContentRepository.findById(managementContentId)
+                .orElseThrow(() -> new ResourceNotFoundException("Tech Content not found for this id :: " + managementContentId));
+
+
+        managementContent.setTitle(contentDetails.getTitle());
+        managementContent.setDescription(contentDetails.getDescription());
+        managementContent.setUrl(contentDetails.getUrl());
+        managementContent.setLevel(contentDetails.getLevel());
+
+
+
+        final ManagementContent updateManagementContent = managementContentRepository.save(
+                managementContent
+        );
+        return ResponseEntity.ok(updateManagementContent);
     }
 
 

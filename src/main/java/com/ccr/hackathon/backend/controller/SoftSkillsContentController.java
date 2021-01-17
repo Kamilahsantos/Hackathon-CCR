@@ -1,7 +1,9 @@
 package com.ccr.hackathon.backend.controller;
 
 import com.ccr.hackathon.backend.exception.ResourceNotFoundException;
+import com.ccr.hackathon.backend.model.ManagementContent;
 import com.ccr.hackathon.backend.model.SoftSkillsContent;
+import com.ccr.hackathon.backend.model.TechContent;
 import com.ccr.hackathon.backend.repository.SoftSkillsContentRepository;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -62,6 +64,27 @@ public class SoftSkillsContentController {
         return ResponseEntity.ok().body(softSkillsContent);
     }
 
+
+
+    @PatchMapping("/soft_skills/{id}")
+    public ResponseEntity<SoftSkillsContent> updateSoftSkillsContent(@PathVariable(value = "id") Long softSkillsContentId,
+                                                                     @Valid @RequestBody SoftSkillsContent contentDetails) throws ResourceNotFoundException {
+        SoftSkillsContent softSkillsContent = softSkillsContentRepository.findById(softSkillsContentId)
+                .orElseThrow(() -> new ResourceNotFoundException("Tech Content not found for this id :: " + softSkillsContentId));
+
+
+        softSkillsContent.setTitle(contentDetails.getTitle());
+        softSkillsContent.setDescription(contentDetails.getDescription());
+        softSkillsContent.setUrl(contentDetails.getUrl());
+        softSkillsContent.setLevel(contentDetails.getLevel());
+
+
+
+        final SoftSkillsContent updateSoftSkillsContent = softSkillsContentRepository.save(
+                softSkillsContent
+        );
+        return ResponseEntity.ok(updateSoftSkillsContent);
+    }
 
     @ApiOperation(value = "Delete a Soft Skills Content by Id")
     @ApiResponses(value = {
