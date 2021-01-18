@@ -33,9 +33,7 @@ public class SwaggerConfig {
                         "sistema penal e conectá-los com o mercado da tecnologia, seja por meio da\n" +
                         "educação empreendedorismo, apoio social e mercado de trabalho.")
                 .version("1.0.0")
-                .license("Apache License Version 2.0")
-                .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0")
-                .contact(new Contact("Github", "https://github.com/Kamilahsantos/Hackathon-CCR",null))
+                .contact(new Contact("Github", "https://github.com/Kamilahsantos/Recomeca-Tech-Api",null))
                 .build();
 
     }
